@@ -1,0 +1,26 @@
+{
+  "name": "ia-know",
+  "version": "1.0.0",
+  "description": "Base de conhecimento para desenvolvedores sobre IA, LLM, Agentes e ferramentas de desenvolvimento",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "ia",
+    "llm",
+    "ai-agents",
+    "claude",
+    "copilot",
+    "agi",
+    "knowledge-base",
+    "documentation"
+  ],
+  "author": "juninmd",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.1.4"
+  }
+}
