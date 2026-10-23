@@ -1,9 +1,22 @@
+<div align="center">
+
+<img src=".github/assets/icon.svg" alt="" width="96" height="96" />
+
 # IA Know 🤖
 
-> Base de conhecimento completa sobre IA, LLM, Agentes e ferramentas de desenvolvimento com Inteligência Artificial
+**Base de conhecimento completa sobre IA, LLM, Agentes e ferramentas de desenvolvimento com Inteligência Artificial.**<br/>
+Site estático em VitePress, em português, com glossário e 5 seções de conteúdo.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-vitepress-green.svg)](https://vitepress.dev/)
+
+<br/>
+
+<img src=".github/assets/screenshots/home.png" alt="Página inicial do IA Know com o título, os botões Começar e Glossário e três cartões de seção" width="860" />
+
+</div>
+
+> Clone, instale e rode `npm install && npm run docs:dev`, depois abra http://localhost:5173.
 
 ## 📚 Sobre
 
@@ -14,6 +27,17 @@
 - **🛠️ Ferramentas de Desenvolvimento**: GitHub Copilot, Claude Code, Cursor, Codex
 - **🎯 AGI**: Conceitos de Inteligência Artificial Geral
 - **✨ Boas Práticas**: Prompt engineering, segurança, ética
+
+## 🖼️ Tour
+
+<table>
+<tr>
+<td width="50%"><img src=".github/assets/screenshots/llm-introducao.png" alt="Página de introdução aos LLMs com a barra lateral de navegação" /><br/><b>Páginas de conteúdo</b> com barra lateral por tema.</td>
+<td width="50%"><img src=".github/assets/screenshots/glossario.png" alt="Página do glossário com termos técnicos em ordem alfabética" /><br/><b>Glossário</b> de termos técnicos de A a Z.</td>
+</tr>
+</table>
+
+<sub>Capturas do site local (`npm run docs:preview`), tema escuro padrão, sem dados pessoais.</sub>
 
 ## 🚀 Acesso Rápido
 
@@ -33,15 +57,30 @@ npm run docs:build
 
 Acesse: `http://localhost:5173`
 
-### Principais Seções
+### Documentação
 
-- **[Resumo Executivo](docs/resumo.md)**: Visão geral de todos os tópicos
-- **[Glossário Completo](docs/glossario.md)**: Dicionário de termos técnicos de A-Z
-- **[Large Language Models](docs/llm/introducao.md)**: Entenda GPT, Claude, Gemini e outros
-- **[Ferramentas de Desenvolvimento](docs/ferramentas/github-copilot.md)**: Copilot, Claude Code, Cursor
-- **[Agentes de IA](docs/agentes/conceitos.md)**: Construa sistemas autônomos
-- **[AGI](docs/agi/introducao.md)**: O futuro da Inteligência Artificial
-- **[Boas Práticas](docs/praticas/prompt-engineering.md)**: Prompt engineering e muito mais
+| Documento | O que tem |
+|---|---|
+| 📝 [Resumo Executivo](docs/resumo.md) | visão geral de todos os tópicos |
+| 📚 [Glossário Completo](docs/glossario.md) | dicionário de termos técnicos de A-Z |
+| 🧠 [Large Language Models](docs/llm/introducao.md) | GPT, Claude, Gemini e outros |
+| 🛠️ [Ferramentas de Desenvolvimento](docs/ferramentas/github-copilot.md) | Copilot, Claude Code, Cursor, Codex |
+| 🤖 [Agentes de IA](docs/agentes/conceitos.md) | sistemas autônomos e multi-agent |
+| 🔮 [AGI](docs/agi/introducao.md) | o futuro da Inteligência Artificial |
+| ✅ [Boas Práticas](docs/praticas/prompt-engineering.md) | prompt engineering, segurança e ética |
+
+## 🧭 Como funciona
+
+```mermaid
+flowchart LR
+  MD["docs/**/*.md"] --> CFG["docs/.vitepress/config.js<br/>nav e sidebar"]
+  CFG -->|npm run docs:dev| DEV["Servidor local :5173"]
+  CFG -->|npm run docs:build| DIST["docs/.vitepress/dist"]
+  DIST -->|npm run docs:preview| PREV["Servidor de preview"]
+```
+
+- O conteúdo é Markdown puro em `docs/`; a navegação e a barra lateral são definidas só em `docs/.vitepress/config.js`.
+- O `docs:dev` recarrega a página a cada alteração; o `docs:build` gera o site estático que o `docs:preview` serve.
 
 ## 📖 Conteúdo
 
@@ -197,6 +236,7 @@ ia-know/
 │   ├── ferramentas/           # Ferramentas de desenvolvimento
 │   │   ├── github-copilot.md
 │   │   ├── claude-code.md
+│   │   ├── codex.md
 │   │   ├── cursor.md
 │   │   └── outras.md
 │   ├── agentes/               # Agentes de IA
@@ -208,10 +248,14 @@ ia-know/
 │   │   ├── introducao.md
 │   │   ├── estado-atual.md
 │   │   └── desafios.md
+│   ├── papers/                # Catálogo de papers, gerado automaticamente
 │   └── praticas/              # Boas práticas
 │       ├── prompt-engineering.md
 │       ├── seguranca.md
 │       └── etica.md
+├── .github/                   # Workflows e recursos do repositório
+├── AGENTS.md                  # Convenções para agentes de IA
+├── SECURITY.md                # Política de segurança e reporte de vulnerabilidades
 ├── package.json
 ├── .gitignore
 └── README.md
@@ -241,6 +285,12 @@ ia-know/
 - [HuggingFace](https://huggingface.co/)
 - [r/MachineLearning](https://reddit.com/r/MachineLearning)
 - [r/LocalLLaMA](https://reddit.com/r/LocalLLaMA)
+
+## ⚠️ Limitações conhecidas
+
+- A seção **Novidades (2024-2026)** cita versões como GPT-4 Turbo, Claude 3.5 Sonnet e Gemini 1.5, que podem já ter sido substituídas; não há verificação automática de versões.
+- Nenhuma URL pública do site é referenciada aqui: o site é gerado e servido localmente com `npm run docs:build` e `npm run docs:preview`.
+- O workflow `Deploy` (`.github/workflows/deploy.yml`) chama um build de imagem Docker, mas não há `Dockerfile` versionado neste repositório; a publicação não foi verificada.
 
 ## 📄 Licença
 
