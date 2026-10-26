@@ -4,8 +4,17 @@ export default defineConfig({
   title: 'IA Know',
   description: 'Base de conhecimento sobre IA, LLM, Agentes e Ferramentas de Desenvolvimento',
   lang: 'pt-BR',
+  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
 
   themeConfig: {
+    outline: { label: 'Nesta página' },
+    docFooter: { prev: 'Página anterior', next: 'Próxima página' },
+    darkModeSwitchLabel: 'Aparência',
+    lightModeSwitchTitle: 'Mudar para o tema claro',
+    darkModeSwitchTitle: 'Mudar para o tema escuro',
+    sidebarMenuLabel: 'Menu',
+    returnToTopLabel: 'Voltar ao topo',
+    langMenuLabel: 'Mudar idioma',
     nav: [
       { text: 'Início', link: '/' },
       { text: 'Resumo', link: '/resumo' },
@@ -76,7 +85,17 @@ export default defineConfig({
     },
 
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        translations: {
+          button: { buttonText: 'Buscar', buttonAriaLabel: 'Buscar' },
+          modal: {
+            noResultsText: 'Nenhum resultado para',
+            resetButtonTitle: 'Limpar busca',
+            footer: { selectText: 'selecionar', navigateText: 'navegar', closeText: 'fechar' }
+          }
+        }
+      }
     }
   }
 })
