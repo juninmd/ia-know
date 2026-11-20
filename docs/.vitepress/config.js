@@ -72,6 +72,12 @@ export default defineConfig({
           { text: 'Segurança', link: '/praticas/seguranca' },
           { text: 'Ética e Responsabilidade', link: '/praticas/etica' }
         ]
+      },
+      {
+        text: 'Pesquisa',
+        items: [
+          { text: 'Papers de IA e LLMs', link: '/papers/ia-llms' }
+        ]
       }
     ],
 
