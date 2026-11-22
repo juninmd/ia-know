@@ -18,5 +18,9 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 CMD ["nginx", "-g", "daemon off;"]
 
 # executa app sem privilegio (DS-0002)
-RUN addgroup -g 10001 app && adduser -u 10001 -G app -s /bin/sh -D app
+RUN addgroup -g 10001 app && adduser -u 10001 -G app -s /bin/sh -D app \
+    # nginx precisa gravar cache/temp e o pid; sem isso o worker sem root morre no boot
+    && mkdir -p /var/cache/nginx \
+    && chown -R app:app /var/cache/nginx \
+    && touch /var/run/nginx.pid && chown app:app /var/run/nginx.pid
 USER app
